@@ -1,7 +1,6 @@
 'use client'
 
 import { Plus, Play, Pause, Settings, Zap, Mail, MessageSquare, Clock, Users, TrendingUp } from 'lucide-react'
-import { DashboardLayout } from '@/components/layout'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -26,7 +25,6 @@ export default function MarketerAutomationPage() {
   const avgRate = automations.filter(a => a.rate > 0).reduce((acc, a) => acc + a.rate, 0) / automations.filter(a => a.rate > 0).length
 
   return (
-    <DashboardLayout workspace="marketer">
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
@@ -43,29 +41,29 @@ export default function MarketerAutomationPage() {
           <KPICard
             title="Active Automations"
             value={activeAutomations}
-            change={2}
-            changeType="increase"
+            change={2.0}
+            trend="up"
             icon={Zap}
           />
           <KPICard
             title="Total Sent"
             value={totalSent.toLocaleString()}
             change={15.3}
-            changeType="increase"
+            trend="up"
             icon={Mail}
           />
           <KPICard
             title="Conversions"
             value={totalConverted.toLocaleString()}
             change={12.8}
-            changeType="increase"
+            trend="up"
             icon={Users}
           />
           <KPICard
             title="Avg Conversion Rate"
             value={`${avgRate.toFixed(1)}%`}
             change={3.5}
-            changeType="increase"
+            trend="up"
             icon={TrendingUp}
           />
         </div>
@@ -125,6 +123,5 @@ export default function MarketerAutomationPage() {
           ))}
         </div>
       </div>
-    </DashboardLayout>
   )
 }

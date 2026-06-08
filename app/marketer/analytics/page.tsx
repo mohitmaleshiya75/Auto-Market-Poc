@@ -1,7 +1,6 @@
 'use client'
 
 import { TrendingUp, TrendingDown, Mail, MessageSquare, Smartphone, Users, DollarSign, Target } from 'lucide-react'
-import { DashboardLayout } from '@/components/layout'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { KPICard } from '@/components/shared/kpi-card'
 import { campaigns } from '@/lib/data/campaigns'
@@ -38,7 +37,6 @@ export default function MarketerAnalyticsPage() {
   const totalCampaigns = campaigns.length
 
   return (
-    <DashboardLayout workspace="marketer">
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Performance Analytics</h1>
@@ -50,28 +48,28 @@ export default function MarketerAnalyticsPage() {
             title="Total Revenue"
             value={`$${(totalRevenue / 1000000).toFixed(1)}M`}
             change={18.5}
-            changeType="increase"
+            trend="up"
             icon={DollarSign}
           />
           <KPICard
             title="Conversions"
-            value={totalConversions.toLocaleString()}
+            value={totalConversions.toLocaleString('en-US')}
             change={12.3}
-            changeType="increase"
+            trend="up"
             icon={Target}
           />
           <KPICard
             title="Avg Conv. Rate"
             value={`${avgConversionRate}%`}
             change={2.1}
-            changeType="increase"
+            trend="up"
             icon={TrendingUp}
           />
           <KPICard
             title="Active Campaigns"
             value={campaigns.filter(c => c.status === 'running').length}
             change={3}
-            changeType="increase"
+            trend="up"
             icon={Mail}
           />
         </div>
@@ -166,6 +164,5 @@ export default function MarketerAnalyticsPage() {
           </CardContent>
         </Card>
       </div>
-    </DashboardLayout>
   )
 }

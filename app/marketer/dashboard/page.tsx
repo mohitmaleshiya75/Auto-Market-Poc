@@ -1,7 +1,6 @@
 'use client'
 
 import { TrendingUp, TrendingDown, Mail, MessageSquare, Smartphone, Users, BarChart3, Megaphone, Target, Zap } from 'lucide-react'
-import { DashboardLayout } from '@/components/layout'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -36,8 +35,7 @@ export default function MarketerDashboard() {
   const totalRevenue = campaigns.reduce((acc, c) => acc + c.revenue, 0)
 
   return (
-    <DashboardLayout workspace="marketer">
-      <div className="space-y-6">
+    <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold tracking-tight">Marketer Dashboard</h1>
@@ -53,29 +51,29 @@ export default function MarketerDashboard() {
           <KPICard
             title="Active Campaigns"
             value={activeCampaigns}
-            change={12}
-            changeType="increase"
+            change={12.0}
+            trend="up"
             icon={Megaphone}
           />
           <KPICard
             title="Total Messages Sent"
-            value={totalSent.toLocaleString()}
+            value={totalSent.toLocaleString('en-US')}
             change={8.5}
-            changeType="increase"
+            trend="up"
             icon={Mail}
           />
           <KPICard
             title="Avg Open Rate"
             value="28.4%"
             change={2.3}
-            changeType="increase"
+            trend="up"
             icon={BarChart3}
           />
           <KPICard
             title="Campaign Revenue"
             value={`$${(totalRevenue / 1000).toFixed(0)}K`}
             change={15.2}
-            changeType="increase"
+            trend="up"
             icon={TrendingUp}
           />
         </div>
@@ -161,13 +159,13 @@ export default function MarketerDashboard() {
                       </div>
                       <div>
                         <p className="font-medium">{campaign.name}</p>
-                        <p className="text-sm text-muted-foreground">{campaign.sent.toLocaleString()} sent</p>
+                        <p className="text-sm text-muted-foreground">{campaign.sent.toLocaleString('en-US')} sent</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="text-right">
                         <p className="text-sm font-medium">{((campaign.opened / campaign.delivered) * 100).toFixed(1)}% opened</p>
-                        <p className="text-xs text-muted-foreground">{campaign.clicked.toLocaleString()} clicks</p>
+                        <p className="text-xs text-muted-foreground">{campaign.clicked.toLocaleString('en-US')} clicks</p>
                       </div>
                       <Badge variant={
                         campaign.status === 'running' ? 'default' :
@@ -213,6 +211,5 @@ export default function MarketerDashboard() {
           </Card>
         </div>
       </div>
-    </DashboardLayout>
   )
 }

@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useEffect } from 'react'
 import { 
   LayoutDashboard, Users, Target, UserPlus, Megaphone, Zap, BarChart3, 
   FileText, Upload, Shield, ScrollText, Settings, Mail, MessageSquare, 
@@ -28,6 +29,7 @@ const sidebarConfigs: Record<Workspace, { title: string; items: SidebarItem[] }>
       { label: 'Customer Management', href: '/admin/customers', icon: Users },
       { label: 'Audience Segmentation', href: '/admin/segments', icon: Target },
       { label: 'Lead Management', href: '/admin/leads', icon: UserPlus },
+      { label: 'Email Marketing', href: '/admin/email', icon: Mail },
       { label: 'Campaign Management', href: '/admin/campaigns', icon: Megaphone },
       { label: 'Automation Center', href: '/admin/automation', icon: Zap },
       { label: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
@@ -43,6 +45,7 @@ const sidebarConfigs: Record<Workspace, { title: string; items: SidebarItem[] }>
     title: 'Marketer',
     items: [
       { label: 'Dashboard', href: '/marketer/dashboard', icon: LayoutDashboard },
+      { label: 'Lead Coverage', href: '/marketer/lead-coverage', icon: PieChart },
       { label: 'Campaigns', href: '/marketer/campaigns', icon: Megaphone },
       { label: 'Templates', href: '/marketer/templates', icon: Palette },
       { label: 'Email Marketing', href: '/marketer/email', icon: Mail },
@@ -84,9 +87,30 @@ const sidebarConfigs: Record<Workspace, { title: string; items: SidebarItem[] }>
 
 export function AppSidebar() {
   const pathname = usePathname()
-  const { currentWorkspace, sidebarCollapsed, toggleSidebar } = useAppStore()
+  const { currentWorkspace, sidebarCollapsed, toggleSidebar, setSidebarCollapsed } = useAppStore()
   
   const config = sidebarConfigs[currentWorkspace]
+
+  // Handle responsive sidebar behavior
+  useEffect(() => {
+    const handleResize = () => {
+      // Automatically collapse sidebar on smaller screens (less than 1024px)
+      if (window.innerWidth < 1024) {
+        setSidebarCollapsed(true)
+      }
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [setSidebarCollapsed])
+
+  // Auto-collapse sidebar ONLY on mobile navigation (< 768px)
+  useEffect(() => {
+    if (window.innerWidth < 768 && !sidebarCollapsed) {
+      setSidebarCollapsed(true)
+    }
+  }, [pathname, sidebarCollapsed, setSidebarCollapsed])
   
   return (
     <aside className={cn(

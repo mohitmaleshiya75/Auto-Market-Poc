@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Plus, Search, Users, Upload, Download, MoreHorizontal, Filter } from 'lucide-react'
-import { DashboardLayout } from '@/components/layout'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -25,7 +24,6 @@ export default function AudiencesPage() {
   const staticSegments = segments.filter(s => s.type === 'static').length
 
   return (
-    <DashboardLayout workspace="marketer">
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
@@ -49,25 +47,21 @@ export default function AudiencesPage() {
             title="Total Segments"
             value={segments.length}
             icon={Users}
-            iconColor="text-blue-600"
           />
           <StatCard
             title="Total Contacts"
             value={totalContacts.toLocaleString()}
             icon={Users}
-            iconColor="text-emerald-600"
           />
           <StatCard
             title="Dynamic Segments"
             value={dynamicSegments}
             icon={Users}
-            iconColor="text-purple-600"
           />
           <StatCard
             title="Static Lists"
             value={staticSegments}
             icon={Users}
-            iconColor="text-orange-600"
           />
         </div>
 
@@ -147,6 +141,5 @@ export default function AudiencesPage() {
           </CardContent>
         </Card>
       </div>
-    </DashboardLayout>
   )
 }

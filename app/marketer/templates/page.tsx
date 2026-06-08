@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Plus, Search, Mail, MessageSquare, Smartphone, Eye, Edit2, Copy, Trash2 } from 'lucide-react'
-import { DashboardLayout } from '@/components/layout'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -29,7 +28,6 @@ export default function TemplatesPage() {
   )
 
   return (
-    <DashboardLayout workspace="marketer">
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
@@ -214,6 +212,5 @@ export default function TemplatesPage() {
           </TabsContent>
         </Tabs>
       </div>
-    </DashboardLayout>
   )
 }

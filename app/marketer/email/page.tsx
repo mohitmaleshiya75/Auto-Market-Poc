@@ -56,14 +56,14 @@ export default function EmailMarketingPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <KPICard
           title="Total Sent"
-          value={totalSent.toLocaleString()}
+          value={totalSent.toLocaleString('en-US')}
           change={8.2}
           trend="up"
           icon={Send}
         />
         <KPICard
           title="Delivered"
-          value={totalDelivered.toLocaleString()}
+          value={totalDelivered.toLocaleString('en-US')}
           change={7.5}
           trend="up"
           icon={CheckCircle}
@@ -180,8 +180,8 @@ export default function EmailMarketingPage() {
                         {campaign.status}
                       </Badge>
                     </TableCell>
-                    <TableCell>{campaign.sent.toLocaleString()}</TableCell>
-                    <TableCell>{campaign.delivered.toLocaleString()}</TableCell>
+                    <TableCell>{campaign.sent.toLocaleString('en-US')}</TableCell>
+                    <TableCell>{campaign.delivered.toLocaleString('en-US')}</TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <Progress value={openRate} className="w-16 h-2" />
@@ -194,7 +194,7 @@ export default function EmailMarketingPage() {
                         <span className="text-sm">{clickRate.toFixed(1)}%</span>
                       </div>
                     </TableCell>
-                    <TableCell className="font-medium">${campaign.revenue.toLocaleString()}</TableCell>
+                    <TableCell className="font-medium">${campaign.revenue.toLocaleString('en-US')}</TableCell>
                   </TableRow>
                 )
               })}

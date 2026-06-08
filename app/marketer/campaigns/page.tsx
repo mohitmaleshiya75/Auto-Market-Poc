@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Plus, Search, Filter, MoreHorizontal, Play, Pause, Mail, MessageSquare, Smartphone, Bell } from 'lucide-react'
-import { DashboardLayout } from '@/components/layout'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -49,7 +48,6 @@ export default function MarketerCampaignsPage() {
   }
 
   return (
-    <DashboardLayout workspace="marketer">
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
@@ -63,10 +61,10 @@ export default function MarketerCampaignsPage() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-4">
-          <StatCard title="Total Campaigns" value={stats.total} icon={Mail} iconColor="text-blue-600" />
-          <StatCard title="Active" value={stats.active} icon={Play} iconColor="text-emerald-600" />
-          <StatCard title="Scheduled" value={stats.scheduled} icon={Bell} iconColor="text-orange-600" />
-          <StatCard title="Completed" value={stats.completed} icon={Mail} iconColor="text-purple-600" />
+          <StatCard title="Total Campaigns" value={stats.total} icon={Mail} />
+          <StatCard title="Active" value={stats.active} icon={Play} />
+          <StatCard title="Scheduled" value={stats.scheduled} icon={Bell} />
+          <StatCard title="Completed" value={stats.completed} icon={Mail} />
         </div>
 
         <Card>
@@ -149,7 +147,7 @@ export default function MarketerCampaignsPage() {
                         <Badge className={statusColors[campaign.status]}>{campaign.status}</Badge>
                       </TableCell>
                       <TableCell>{campaign.audience}</TableCell>
-                      <TableCell>{campaign.sent.toLocaleString()}</TableCell>
+                      <TableCell>{campaign.sent.toLocaleString('en-US')}</TableCell>
                       <TableCell>{openRate}%</TableCell>
                       <TableCell>{clickRate}%</TableCell>
                       <TableCell>
@@ -181,6 +179,5 @@ export default function MarketerCampaignsPage() {
           </CardContent>
         </Card>
       </div>
-    </DashboardLayout>
   )
 }

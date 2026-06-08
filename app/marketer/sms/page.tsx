@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Plus, Search, MessageSquare, Send, CheckCircle, BarChart3, Clock } from 'lucide-react'
-import { DashboardLayout } from '@/components/layout'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -41,7 +40,6 @@ export default function SMSMarketingPage() {
   )
 
   return (
-    <DashboardLayout workspace="marketer">
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
@@ -57,30 +55,30 @@ export default function SMSMarketingPage() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <KPICard
             title="Total Sent"
-            value={totalSent.toLocaleString()}
+            value={totalSent.toLocaleString('en-US')}
             change={12.5}
-            changeType="increase"
+            trend="up"
             icon={Send}
           />
           <KPICard
             title="Delivered"
-            value={totalDelivered.toLocaleString()}
+            value={totalDelivered.toLocaleString('en-US')}
             change={11.2}
-            changeType="increase"
+            trend="up"
             icon={CheckCircle}
           />
           <KPICard
             title="Delivery Rate"
             value={`${deliveryRate}%`}
             change={0.8}
-            changeType="increase"
+            trend="up"
             icon={MessageSquare}
           />
           <KPICard
             title="Click Rate"
             value={`${clickRate}%`}
             change={2.3}
-            changeType="increase"
+            trend="up"
             icon={BarChart3}
           />
         </div>
@@ -196,6 +194,5 @@ export default function SMSMarketingPage() {
           </CardContent>
         </Card>
       </div>
-    </DashboardLayout>
   )
 }

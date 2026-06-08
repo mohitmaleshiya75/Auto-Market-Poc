@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Plus, Search, Smartphone, Send, CheckCircle, BarChart3, Clock, AlertCircle } from 'lucide-react'
-import { DashboardLayout } from '@/components/layout'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -45,7 +44,6 @@ export default function WhatsAppMarketingPage() {
   const pendingTemplates = whatsappTemplates.filter(t => t.status === 'pending').length
 
   return (
-    <DashboardLayout workspace="marketer">
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
@@ -61,30 +59,30 @@ export default function WhatsAppMarketingPage() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <KPICard
             title="Total Sent"
-            value={totalSent.toLocaleString()}
+            value={totalSent.toLocaleString('en-US')}
             change={15.3}
-            changeType="increase"
+            trend="up"
             icon={Send}
           />
           <KPICard
             title="Delivered"
-            value={totalDelivered.toLocaleString()}
+            value={totalDelivered.toLocaleString('en-US')}
             change={14.8}
-            changeType="increase"
+            trend="up"
             icon={CheckCircle}
           />
           <KPICard
             title="Read Rate"
             value={`${readRate}%`}
             change={3.2}
-            changeType="increase"
+            trend="up"
             icon={Smartphone}
           />
           <KPICard
             title="Reply Rate"
             value="18.5%"
             change={2.1}
-            changeType="increase"
+            trend="up"
             icon={BarChart3}
           />
         </div>
@@ -221,6 +219,5 @@ export default function WhatsAppMarketingPage() {
           </CardContent>
         </Card>
       </div>
-    </DashboardLayout>
   )
 }
