@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import {
   AlertTriangle,
   CheckCircle2,
@@ -11,6 +12,7 @@ import {
   Mail,
   MessageSquare,
   MousePointerClick,
+  Plus,
   Reply,
   Send,
   Smartphone,
@@ -20,7 +22,6 @@ import {
   Users,
   XCircle,
 } from 'lucide-react'
-import { DashboardLayout } from '@/components/layout'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -271,8 +272,7 @@ export default function CampaignDashboard() {
   const [selectedCampaign, setSelectedCampaign] = useState<CampaignDetail>(propertyLaunchCampaign)
 
   return (
-    <DashboardLayout workspace="campaign">
-      <div className="space-y-6">
+    <div className="space-y-6">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h1 className="text-3xl font-bold tracking-tight">Campaign Coverage & Recipient Tracking</h1>
@@ -289,6 +289,12 @@ export default function CampaignDashboard() {
               <Target className="mr-2 h-4 w-4" />
               Target Never Contacted
             </Button>
+            <Link href="/campaign/create">
+              <Button>
+                <Plus className="mr-2 h-4 w-4" />
+                Create Campaign
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -493,6 +499,6 @@ export default function CampaignDashboard() {
           </Card>
         </div>
       </div>
-    </DashboardLayout>
+    </div>
   )
 }
